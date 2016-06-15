@@ -27,6 +27,15 @@ class PostsController < ApplicationController
     @post = Post.create(title: params[:title], content: params[:content])
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.daily_reports.destroy_all
+    @post.destroy
+    # redirect_to root_path
+    render json: @post
+end
+
+
 
 
 end
