@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
 
+
+  def home
+  end
+
   def index
     @posts = Post.all
     # respond_to do |format|
@@ -25,11 +29,11 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(title: params[:title], content: params[:content])
+    render json: @post, status: 201
   end
 
   def destroy
     @post = Post.find(params[:id])
-    @post.daily_reports.destroy_all
     @post.destroy
     # redirect_to root_path
     render json: @post
